@@ -107,21 +107,37 @@
 }
 
 @layer components {
-  /* Glassmorphism Card */
+  /* Futuristic Glassmorphism Card */
   .glass-card {
-    @apply rounded-2xl border border-border/50;
+    @apply rounded-2xl border border-border/40;
     background: linear-gradient(
-      135deg,
-      hsl(var(--elevated-dark) / 0.8),
-      hsl(var(--deep-void) / 0.9)
+      145deg,
+      hsl(var(--elevated-dark) / 0.7),
+      hsl(var(--deep-void) / 0.85)
     );
-    backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-elevated);
+    backdrop-filter: blur(24px);
+    box-shadow: 
+      var(--shadow-elevated),
+      inset 0 1px 0 0 hsl(var(--white-ice) / 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--electric-violet) / 0.3), transparent);
   }
   
   .glass-card:hover {
     border-color: hsl(var(--electric-violet) / 0.5);
-    box-shadow: var(--glow-violet);
+    box-shadow: 
+      var(--glow-violet),
+      inset 0 1px 0 0 hsl(var(--white-ice) / 0.08);
   }
   
   /* Glow Effects */
@@ -152,20 +168,137 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
   
-  /* Mesh Background */
+  /* Futuristic Mesh Background */
   .mesh-bg {
     background-image: 
-      radial-gradient(at 40% 20%, hsl(var(--electric-violet) / 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsl(var(--tech-teal) / 0.08) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsl(var(--electric-violet) / 0.05) 0px, transparent 50%);
+      radial-gradient(at 40% 20%, hsl(var(--electric-violet) / 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(var(--tech-teal) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsl(var(--electric-violet) / 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(var(--tech-teal) / 0.05) 0px, transparent 50%);
   }
   
-  /* Abstract Grid Lines */
+  /* Abstract Grid Lines - Futuristic */
   .grid-lines {
     background-image: 
-      linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(to right, hsl(var(--electric-violet) / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--electric-violet) / 0.08) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  
+  /* Futuristic Scan Line Effect */
+  .scan-lines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--electric-violet) / 0.02) 2px,
+      hsl(var(--electric-violet) / 0.02) 4px
+    );
+  }
+  
+  /* Neon Border */
+  .neon-border {
+    position: relative;
+    border: 1px solid hsl(var(--electric-violet) / 0.3);
+  }
+  
+  .neon-border::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, 
+      hsl(var(--electric-violet) / 0), 
+      hsl(var(--electric-violet) / 0.5), 
+      hsl(var(--tech-teal) / 0.5),
+      hsl(var(--tech-teal) / 0)
+    );
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .neon-border:hover::after {
+    opacity: 1;
+  }
+  
+  /* Holographic Effect */
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--electric-violet) / 0.1) 0%,
+      hsl(var(--tech-teal) / 0.1) 50%,
+      hsl(var(--electric-violet) / 0.1) 100%
+    );
+    background-size: 200% 200%;
+    animation: holographic-shift 8s ease infinite;
+  }
+  
+  @keyframes holographic-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Futuristic Stats Counter */
+  .stat-number {
+    background: linear-gradient(180deg, hsl(var(--white-ice)), hsl(var(--silver-grey)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Cyber Lines Decoration */
+  .cyber-line {
+    position: relative;
+  }
+  
+  .cyber-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--electric-violet)), 
+      hsl(var(--tech-teal)),
+      transparent
+    );
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+  
+  .cyber-line:hover::before {
+    transform: scaleX(1);
+  }
+  
+  /* Glowing Ring */
+  .glow-ring {
+    position: relative;
+  }
+  
+  .glow-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      hsl(var(--electric-violet)),
+      hsl(var(--tech-teal)),
+      hsl(var(--electric-violet))
+    );
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(10px);
+    animation: glow-ring-rotate 4s linear infinite;
+  }
+  
+  @keyframes glow-ring-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }
 

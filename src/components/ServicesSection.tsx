@@ -30,16 +30,26 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-elevated-dark/50">
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-24 relative overflow-hidden">
+      {/* Futuristic Background */}
+      <div className="absolute inset-0 bg-elevated-dark/40" />
+      <div className="absolute inset-0 grid-lines opacity-15" />
+      <div className="absolute inset-0 holographic opacity-30" />
+      
+      {/* Glowing Orbs */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-electric-violet/8 rounded-full blur-[180px]" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-tech-teal/8 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-electric-violet text-sm font-medium tracking-wide mb-3 block">
+          <span className="inline-flex items-center gap-2 bg-electric-violet/10 border border-electric-violet/20 rounded-full px-4 py-1.5 text-electric-violet text-sm font-medium tracking-wide mb-4">
+            <span className="w-2 h-2 bg-electric-violet rounded-full animate-pulse" />
             خدمات تخصصی
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white-ice mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-white-ice mb-4">
             چگونه می‌توانم کمک کنم؟
           </h2>
-          <p className="text-silver-grey max-w-xl mx-auto">
+          <p className="text-silver-grey max-w-xl mx-auto text-lg">
             هر کسب‌وکار نیاز به راه‌حل منحصربه‌فرد دارد. من در کنار شما هستم.
           </p>
         </div>
@@ -48,20 +58,24 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="glass-card p-8 flex flex-col h-full group transition-all duration-500 hover:-translate-y-2 opacity-0 animate-fade-in-up"
+              className="glass-card p-8 flex flex-col h-full group transition-all duration-500 hover:-translate-y-3 opacity-0 animate-fade-in-up"
               style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-electric-violet/20 to-tech-teal/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <service.icon className="w-8 h-8 text-electric-violet" />
+              {/* Icon Container with Holographic Effect */}
+              <div className="relative w-18 h-18 rounded-2xl bg-gradient-to-br from-electric-violet/20 via-transparent to-tech-teal/10 p-4 mb-6 group-hover:scale-105 transition-transform duration-500">
+                <service.icon className="w-10 h-10 text-electric-violet group-hover:text-electric-violet-glow transition-colors" />
+                <div className="absolute inset-0 rounded-2xl bg-electric-violet/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
               <div className="mb-2">
-                <span className="text-tech-teal text-xs font-inter tracking-wider">
+                <span className="text-tech-teal text-xs font-inter tracking-wider uppercase">
                   {service.subtitle}
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold text-white-ice mb-4">{service.title}</h3>
+              <h3 className="text-xl font-bold text-white-ice mb-4 group-hover:text-gradient transition-all duration-300">
+                {service.title}
+              </h3>
 
               <p className="text-silver-grey leading-relaxed mb-6 flex-grow">
                 {service.description}
@@ -71,14 +85,17 @@ const ServicesSection = () => {
                 {service.features.map((feature) => (
                   <span
                     key={feature}
-                    className="bg-surface-elevated px-3 py-1 rounded-full text-xs text-silver-grey font-inter"
+                    className="bg-surface-elevated/80 border border-border/30 px-3 py-1.5 rounded-full text-xs text-silver-grey font-inter hover:border-electric-violet/30 hover:text-white-ice transition-all cursor-default"
                   >
                     {feature}
                   </span>
                 ))}
               </div>
 
-              <Button variant="ghost" className="w-full justify-center text-silver-grey hover:text-electric-violet hover:bg-electric-violet/10">
+              <Button 
+                variant="ghost" 
+                className="w-full justify-center text-silver-grey hover:text-electric-violet hover:bg-electric-violet/10 border border-transparent hover:border-electric-violet/20 transition-all"
+              >
                 اطلاعات بیشتر
               </Button>
             </div>
