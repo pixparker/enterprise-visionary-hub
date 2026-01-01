@@ -1,10 +1,12 @@
 import { ArrowLeft, MapPin, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profileImage from "@/assets/profile.png";
 
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-electric-violet/5 to-transparent" />
+      <div className="absolute inset-0 grid-lines opacity-10" />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -12,17 +14,22 @@ const AboutSection = () => {
           <div className="relative order-2 lg:order-1">
             <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96">
               {/* Glow effect behind */}
-              <div className="absolute inset-0 bg-gradient-to-br from-electric-violet/30 to-tech-teal/20 rounded-3xl blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-electric-violet/30 to-tech-teal/20 rounded-3xl blur-3xl animate-pulse" />
               
-              {/* Main container */}
-              <div className="relative glass-card p-4 rounded-3xl h-full overflow-hidden">
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-elevated-dark to-surface-elevated flex items-center justify-center">
-                  {/* Placeholder for photo - using initials */}
-                  <div className="text-center">
-                    <div className="text-6xl md:text-7xl font-bold text-gradient mb-4">ع.ب</div>
-                    <div className="text-silver-grey text-sm">علی بازداران</div>
-                  </div>
+              {/* Main container with profile image */}
+              <div className="relative glass-card p-3 rounded-3xl h-full overflow-hidden group">
+                <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                  <img 
+                    src={profileImage} 
+                    alt="علی بازداران"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-void/40 via-transparent to-transparent" />
                 </div>
+                
+                {/* Decorative border glow */}
+                <div className="absolute inset-0 rounded-3xl border border-electric-violet/20 group-hover:border-electric-violet/40 transition-colors" />
               </div>
 
               {/* Floating badges */}
