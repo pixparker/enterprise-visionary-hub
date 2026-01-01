@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft, Clock, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const BlogSection = () => {
@@ -7,42 +7,48 @@ const BlogSection = () => {
       title: "چرا Clean Architecture کلید موفقیت پروژه‌های بزرگ است؟",
       excerpt:
         "در این مقاله بررسی می‌کنیم که چگونه یک معماری تمیز می‌تواند هزینه‌های نگهداری را کاهش دهد...",
-      category: "Architecture",
-      readTime: "۸ دقیقه",
-      date: "۱۵ آذر ۱۴۰۴",
+      category: "ARCH",
+      readTime: "8",
+      date: "2026.01.15",
+      id: "001",
     },
     {
       title: "گذار به Microservices: چه زمانی و چگونه؟",
       excerpt:
         "آیا واقعاً به معماری میکروسرویس نیاز دارید؟ در این مطلب معیارهای تصمیم‌گیری را بررسی می‌کنیم...",
-      category: "System Design",
-      readTime: "۱۲ دقیقه",
-      date: "۸ آذر ۱۴۰۴",
+      category: "SYS",
+      readTime: "12",
+      date: "2026.01.08",
+      id: "002",
     },
     {
       title: "۵ اشتباه رایج در یکپارچه‌سازی هوش مصنوعی در سازمان‌ها",
       excerpt:
         "بسیاری از سازمان‌ها در پیاده‌سازی AI با چالش‌هایی مواجه می‌شوند که قابل پیشگیری هستند...",
-      category: "AI Strategy",
-      readTime: "۱۰ دقیقه",
-      date: "۱ آذر ۱۴۰۴",
+      category: "AI",
+      readTime: "10",
+      date: "2026.01.01",
+      id: "003",
     },
   ];
 
   return (
-    <section id="blog" className="py-24 bg-elevated-dark/30">
-      <div className="container mx-auto px-6">
+    <section id="blog" className="py-24 bg-cyber-dark/30 relative overflow-hidden">
+      <div className="absolute inset-0 cyber-grid opacity-20" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <span className="text-electric-violet text-sm font-medium tracking-wide mb-3 block">
-              دیدگاه‌ها و مقالات
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white-ice">
+            <div className="inline-flex items-center gap-2 text-neon-cyan font-orbitron text-xs tracking-widest mb-4">
+              <FileText className="w-4 h-4" />
+              <span>DATA_LOGS</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-orbitron font-bold text-holo-white tracking-wide">
               آخرین نوشته‌ها
             </h2>
           </div>
-          <Button variant="ghost" className="mt-4 md:mt-0 text-silver-grey hover:text-electric-violet">
-            مشاهده همه مقالات
+          <Button variant="ghost" className="mt-4 md:mt-0 text-holo-grey hover:text-neon-cyan">
+            مشاهده آرشیو
             <ArrowLeft className="w-4 h-4 mr-2" />
           </Button>
         </div>
@@ -50,43 +56,42 @@ const BlogSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article, index) => (
             <article
-              key={article.title}
-              className="glass-card overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 opacity-0 animate-fade-in-up"
+              key={article.id}
+              className="group cursor-pointer animate-fade-in-up"
               style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
             >
-              {/* Thumbnail area */}
-              <div className="h-48 bg-gradient-to-br from-electric-violet/20 via-surface-elevated to-tech-teal/10 relative overflow-hidden">
-                <div className="absolute inset-0 grid-lines opacity-50" />
-                <div className="absolute bottom-4 right-4">
-                  <span className="bg-electric-violet/80 text-white-ice text-xs px-3 py-1 rounded-full font-inter">
-                    {article.category}
+              <div className="h-full border border-neon-cyan/20 bg-cyber-dark/60 backdrop-blur-sm transition-all duration-500 hover:border-neon-cyan/60 hover:shadow-[0_0_30px_hsl(185_100%_50%_/_0.1)]">
+                {/* Header bar */}
+                <div className="flex items-center justify-between px-4 py-2 border-b border-neon-cyan/20 bg-neon-cyan/5">
+                  <span className="font-orbitron text-xs text-neon-cyan tracking-widest">
+                    [{article.category}_{article.id}]
                   </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-muted-grey text-xs mb-4">
-                  <span>{article.date}</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {article.readTime}
-                  </span>
+                  <span className="text-holo-muted text-xs font-orbitron">{article.date}</span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white-ice mb-3 group-hover:text-electric-violet transition-colors line-clamp-2">
-                  {article.title}
-                </h3>
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-holo-muted text-xs mb-4 font-orbitron">
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {article.readTime} MIN
+                    </span>
+                  </div>
 
-                <p className="text-silver-grey text-sm leading-relaxed line-clamp-2">
-                  {article.excerpt}
-                </p>
+                  <h3 className="text-lg font-bold text-holo-white mb-3 group-hover:text-neon-cyan transition-colors font-yekan leading-relaxed">
+                    {article.title}
+                  </h3>
 
-                <div className="mt-4 pt-4 border-t border-border/30">
-                  <span className="text-electric-violet text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                    ادامه مطلب
-                    <ArrowLeft className="w-4 h-4" />
-                  </span>
+                  <p className="text-holo-grey text-sm leading-relaxed font-rajdhani line-clamp-2">
+                    {article.excerpt}
+                  </p>
+
+                  <div className="mt-6 pt-4 border-t border-neon-cyan/10">
+                    <span className="text-neon-cyan text-sm flex items-center gap-2 group-hover:gap-3 transition-all font-orbitron tracking-wider">
+                      READ_MORE
+                      <ArrowLeft className="w-4 h-4" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </article>
