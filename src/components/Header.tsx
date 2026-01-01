@@ -23,26 +23,29 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-elevated-dark/80 backdrop-blur-xl border-b border-border/50"
+          ? "bg-elevated-dark/70 backdrop-blur-2xl border-b border-electric-violet/10 shadow-[0_4px_30px_rgba(127,90,240,0.1)]"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="text-xl font-bold text-white-ice">
-            علی<span className="text-electric-violet">.</span>بازداران
+          {/* Futuristic Logo */}
+          <a href="#" className="text-xl font-bold text-white-ice group relative">
+            <span className="relative z-10">
+              علی<span className="text-electric-violet group-hover:text-tech-teal transition-colors">.</span>بازداران
+            </span>
+            <div className="absolute -inset-2 bg-electric-violet/10 rounded-lg opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Enhanced */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-silver-grey hover:text-white-ice transition-colors duration-200 text-sm"
+                className="relative text-silver-grey hover:text-white-ice transition-all duration-300 text-sm cyber-line py-1"
               >
                 {item.label}
               </a>
